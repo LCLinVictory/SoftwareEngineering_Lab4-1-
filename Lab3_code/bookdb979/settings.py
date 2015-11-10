@@ -98,3 +98,4 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     './BookDB/Template/',
 )#!!!
+#for test

@@ -120,3 +120,4 @@ def update_book(request,offset):
         
     return render_to_response('update_book.html',locals())
 # Create your views here.
+#test for Lab4
