@@ -1,0 +1,34 @@
+{% extends "bookdb_base.html" %}
+
+{% block title %}Author_List{% endblock %}
+
+{% block content %}
+    <p><h1>Author_list</h1></p>
+    
+    <p>Your inputing is:
+    <p style="color: green;"> {{query}} </p>
+    </p>
+    
+    {% if Author_find %} 
+        <table border=1 align="center">
+        <tr><th>The author`s book(s):</th></tr>
+        {%for book in Book_all %} 
+            <tr>
+            <td align="center">
+            <a href="book_list/{{book.Title}}">{{book.Title}}</a>
+            </td>
+            
+            <td align="center">
+            <form action="" method="get">
+            <input type="submit" value="delete">
+            <input type="hidden" name="delete" value="{{book.Title}}">
+            </form>
+            </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p style="color: red;">Do not find similar author`s name !</p>
+    {% endif %}
+    
+{% endblock %}

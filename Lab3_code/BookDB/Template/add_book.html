@@ -1,0 +1,49 @@
+{% extends "bookdb_base.html" %}
+
+{% block title %}Add_book{% endblock %}
+
+{% block content %}
+    <p><h2>Please input the book`s informations!</h2></p>
+    <form method="post">
+    <table border=1 align="center">
+    <tr>
+    <th>ISBN</th> 
+    <th>Title</th>
+    <th>AuthorID</th>
+    <th>Publisher</th>
+    <th>PublishDate</th>
+    <th>Price</th>
+    </tr>
+    <tr>
+    <td><input name="ISBN" type="text" placeholder="Max_len:30"></td>
+    <td><input name="Title" type="text" placeholder="Max_len:100"></td>
+    <td><input name="AuthorID" type="text" placeholder="not author`name"></td>
+    <td><input name="Publisher" type="text" placeholder="Max_len:100"></td>
+    <td><input name="PublishDate" type="date" placeholder="like:2015-1-1"></td>
+    <td><input name="Price" type="text" placeholder="Max_len:100"></td>
+    <td><input type="submit" value="save">
+        <input type="reset" value="reset">
+    </td>
+    </tr>
+    </table>
+    </form>    
+    
+    {% if add_check %}
+        <p style="color: green;">Save successfully !</p>
+    {% endif %}
+    
+    {% if errors %}
+        {% for error in errors %}
+        <p style="color: red;">{{error}}</p>
+        
+        {% if author_add %}
+        <p>
+        <form action="/bookdb/add_author/" method="get">
+        <h3>Add a new author:</h3>
+        <p><input type="submit" value="Add author"></p>
+        </form>
+        </p>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "bookdb_base.html" %}
+
+{% block title %}Author_List{% endblock %}
+
+{% block content %}
+    <p><h1>book_list</h1></p>
+    
+    {% if book_request %}
+        <p><h2>Author_Information</h2></p>
+        <table border=1 align="center">
+        <tr>
+        <th>AuthorID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Country</th>
+        </tr>
+            <tr>
+            <td align="center">{{author_find.AuthorID}}</td>
+            <td align="center">{{author_find.Name}}</td>
+            <td align="center">{{author_find.Age}}</td>
+            <td align="center">{{author_find.Country}}</td>
+            </tr>
+        </table>
+        
+        <p><h2>Book_Information</h2></p>
+        <table border=1 align="center">
+        <tr>
+        <th>ISBN</th> 
+        <th>Title</th>
+        <th>AuthorID</th>
+        <th>Publisher</th>
+        <th>PublishDate</th>
+        <th>Price</th>
+        </tr>
+        {% for book in book_request %}
+            <tr>
+            <td>{{book.ISBN}}</td> 
+            <td align="center">{{book.Title}}</td>
+            <td align="center">{{book.AuthorID.AuthorID}}</td>
+            <td align="center">{{book.Publisher}}</td>
+            <td align="center">{{book.PublishDate}}</td>
+            <td align="center">{{book.Price}}</td>
+            <td align="center">
+            <form action="/bookdb/update_book/{{book.Title}}" method="get">
+            <p><input type="submit" value="Update"></p>
+            </form>
+            </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p style="color: red;">Do not find similar book !</p>
+    {% endif %}
+    
+{% endblock %}

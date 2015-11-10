@@ -1,0 +1,58 @@
+{% extends "bookdb_base.html" %}
+
+{% block title %}Update_book{% endblock %}
+
+{% block content %}
+    <p><h2>Update {{update_book.Title}}`s informations</h2></p>
+    <p >
+    <h4 style="color: red;">
+    * Please change PublishDate into : year-month-day
+    </h4>
+    </p>
+    <form method="post">
+    <table border=1 align="center">
+    <tr>
+    <th>AuthorID</th>
+    <th>Publisher</th>
+    <th>PublishDate</th>
+    <th>Price</th>
+    </tr>
+    <tr>
+    <td>
+    <input name="AuthorID" type="text" value="{{update_book.AuthorID.AuthorID}}">
+    </td>
+    <td><input name="Publisher" type="text" value="{{update_book.Publisher}}"></td>
+    <td><input name="PublishDate" type="date" value="{{update_book.PublishDate}}"></td>
+    <td><input name="Price" type="text" value="{{update_book.Price}}"></td>
+    <td><input type="submit" value="save">
+        <input type="reset" value="reset">
+    </td>
+    </tr>
+    </table>
+    </form>    
+    
+    {% if update_check %}
+        <p style="color: green;">Save successfully !</p>
+        
+        <p>
+        <form action="/bookdb/search_author/book_list/{{update_book.Title}}" method="get">
+        <p><input type="submit" value="Check <<{{update_book.Title}}>>`information"></p>
+        </form>
+        </p>
+    {% endif %}
+    
+    {% if errors %}
+        {% for error in errors %}
+        <p style="color: red;">{{error}}</p>
+        
+        {% if author_update %}
+        <p>
+        <form action="/bookdb/add_author/" method="get">
+        <h3>Add a new author:</h3>
+        <p><input type="submit" value="Add author"></p>
+        </form>
+        </p>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "bookdb_base.html" %}
+
+{% block title %}Search_Author{% endblock %}
+
+{% block content %}
+
+    <form action="" method="get">
+    Please input the author`s name :
+    <input type="text" name="author" placeholder="input accurate name">
+    <input type="submit" value="Search">
+    </form>
+    {% if error %}
+        <p style="color: red;">Please input something !</p>
+    {% endif %}
+    
+    <p><h2>Author_List</h2></p>
+    <table border=1 align="center">
+    <tr>
+    <th>AuthorID</th>
+    <th>Name</th>
+    </tr>
+    {% for author in Author_all_list %}
+        <tr>
+        <td align="center">{{author.AuthorID}}</td>
+        <td align="center">{{author.Name}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
