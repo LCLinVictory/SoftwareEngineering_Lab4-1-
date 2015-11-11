@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from BookDB.models import Author,Book
-
+#test for Lab4
 def bookdb_hello(request):
     return render_to_response('bookdb_hello.html')
 
